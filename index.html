@@ -1,763 +1,1049 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>360Alert | AI-Powered Safety Monitoring</title>
-
-    <meta name="description"
-          content="360Alert is an AI-powered safety monitoring and alert management platform designed for healthcare, elderly care, schools, and other safety-focused environments.">
-
-    <meta name="keywords"
-          content="AI safety monitoring, fall detection, healthcare safety, elderly care, alert management, smart security, 360Alert">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f7faff;
-            color: #172033;
-            line-height: 1.6;
-        }
-
-        /* NAVIGATION */
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.96);
-            border-bottom: 1px solid #e5eaf2;
-            padding: 18px 7%;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 25px;
-            font-weight: 800;
-            color: #1264e8;
-        }
-
-        .logo span {
-            color: #172033;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #344054;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        nav a:hover {
-            color: #1264e8;
-        }
-
-        /* HERO */
-
-        .hero {
-            padding: 100px 7%;
-            background:
-                linear-gradient(135deg, #eef6ff, #ffffff);
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-label {
-            display: inline-block;
-            background: #e3f0ff;
-            color: #1264e8;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: 58px;
-            line-height: 1.08;
-            margin-bottom: 25px;
-            color: #101828;
-        }
-
-        .hero h1 span {
-            color: #1264e8;
-        }
-
-        .hero p {
-            font-size: 19px;
-            color: #667085;
-            max-width: 650px;
-            margin-bottom: 30px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 13px 22px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.2s;
-        }
-
-        .btn-primary {
-            background: #1264e8;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #0c4fbd;
-        }
-
-        .btn-secondary {
-            border: 1px solid #ccd5e3;
-            color: #172033;
-            background: white;
-        }
-
-        .btn-secondary:hover {
-            border-color: #1264e8;
-            color: #1264e8;
-        }
-
-        .hero-card {
-            background: white;
-            border: 1px solid #e4eaf2;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 20px 50px rgba(35, 75, 120, 0.10);
-        }
-
-        .monitor {
-            height: 280px;
-            border-radius: 15px;
-            background: linear-gradient(145deg, #1264e8, #54a9ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-        }
-
-        .monitor-icon {
-            font-size: 65px;
-            margin-bottom: 10px;
-        }
-
-        .monitor h3 {
-            font-size: 24px;
-        }
-
-        /* GENERAL */
-
-        section {
-            padding: 85px 7%;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            max-width: 750px;
-            margin: 0 auto 50px;
-        }
-
-        .section-title h2 {
-            font-size: 38px;
-            margin-bottom: 15px;
-            color: #101828;
-        }
-
-        .section-title p {
-            color: #667085;
-            font-size: 17px;
-        }
-
-        /* FEATURES */
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border: 1px solid #e4eaf2;
-            border-radius: 15px;
-            transition: 0.2s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(35, 75, 120, 0.09);
-        }
-
-        .feature-icon {
-            font-size: 35px;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-
-        .feature-card p {
-            color: #667085;
-            font-size: 15px;
-        }
-
-        /* SOLUTIONS */
-
-        .solutions {
-            background: #ffffff;
-        }
-
-        .solution-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .solution-card {
-            padding: 35px;
-            border-radius: 16px;
-            background: #f7faff;
-            border: 1px solid #e4eaf2;
-        }
-
-        .solution-card h3 {
-            margin: 15px 0 10px;
-        }
-
-        .solution-card p {
-            color: #667085;
-        }
-
-        /* TECHNOLOGY */
-
-        .technology {
-            background: #eef6ff;
-        }
-
-        .tech-list {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .tech-item {
-            background: white;
-            padding: 22px;
-            text-align: center;
-            border-radius: 12px;
-            border: 1px solid #dfe8f3;
-            font-weight: 700;
-        }
-
-        /* ABOUT */
-
-        .about-box {
-            background: white;
-            border-radius: 20px;
-            padding: 45px;
-            border: 1px solid #e4eaf2;
-            max-width: 950px;
-            margin: auto;
-        }
-
-        .about-box p {
-            color: #667085;
-            margin-bottom: 15px;
-        }
-
-        /* CTA */
-
-        .cta {
-            background: #1264e8;
-            color: white;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 25px;
-            opacity: 0.9;
-        }
-
-        .cta .btn {
-            background: white;
-            color: #1264e8;
-        }
-
-        /* FOOTER */
-
-        footer {
-            background: #101828;
-            color: #cbd5e1;
-            padding: 35px 7%;
-            text-align: center;
-        }
-
-        footer a {
-            color: #78b7ff;
-            text-decoration: none;
-        }
-
-        /* RESPONSIVE */
-
-        @media (max-width: 900px) {
-
-            .hero-container {
-                grid-template-columns: 1fr;
-            }
-
-            .features,
-            .solution-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .tech-list {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 45px;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            .features,
-            .solution-grid,
-            .tech-list {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                padding: 70px 6%;
-            }
-
-            .hero h1 {
-                font-size: 38px;
-            }
-
-            section {
-                padding: 65px 6%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>360Alert — AI Safety Monitoring Platform</title>
+
+<meta name="description" content="360Alert is an AI-powered safety monitoring and alert management platform for healthcare, elderly care, schools and safety-focused environments.">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    background:#07111f;
+    color:#f5f9ff;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* NAVIGATION */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,17,31,.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.nav-inner{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#fff;
+}
+
+.logo span{
+    color:#39a7ff;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+}
+
+.nav-links a{
+    color:#b9c7d8;
+    font-size:14px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:#fff;
+}
+
+.nav-btn{
+    background:#168cff;
+    color:#fff!important;
+    padding:10px 17px;
+    border-radius:8px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:720px;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 75% 35%,rgba(21,137,255,.22),transparent 30%),
+        radial-gradient(circle at 20% 20%,rgba(0,216,255,.08),transparent 25%),
+        #07111f;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:70px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    padding:8px 15px;
+    border:1px solid rgba(70,173,255,.35);
+    background:rgba(31,142,255,.08);
+    color:#6ec4ff;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.7px;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-size:62px;
+    line-height:1.04;
+    letter-spacing:-2px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#38a7ff;
+}
+
+.hero-text{
+    max-width:650px;
+    color:#aebdce;
+    font-size:18px;
+    margin-bottom:32px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:13px 22px;
+    border-radius:8px;
+    font-weight:700;
+    display:inline-block;
+    transition:.25s;
+}
+
+.btn-primary{
+    background:#168cff;
+    color:#fff;
+}
+
+.btn-primary:hover{
+    background:#0874d8;
+    transform:translateY(-2px);
+}
+
+.btn-outline{
+    border:1px solid #31465d;
+    color:#eaf4ff;
+}
+
+.btn-outline:hover{
+    border-color:#168cff;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);
+    animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+.dashboard-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:17px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.dashboard-title{
+    font-size:13px;
+    font-weight:700;
+}
+
+.status{
+    color:#54e6a5;
+    font-size:11px;
+}
+
+.dashboard-main{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:15px;
+}
+
+.metric{
+    background:#0c1b2d;
+    padding:18px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.metric small{
+    color:#8495a8;
+    display:block;
+    margin-bottom:6px;
+}
+
+.metric strong{
+    font-size:25px;
+}
+
+.alert-box{
+    margin-top:14px;
+    background:#0c1b2d;
+    border:1px solid rgba(255,255,255,.07);
+    padding:17px;
+    border-radius:12px;
+}
+
+.alert-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+    font-size:13px;
+}
+
+.alert-dot{
+    width:9px;
+    height:9px;
+    background:#ffb454;
+    border-radius:50%;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:100px 0;
+}
+
+.section-dark{
+    background:#091625;
+}
+
+.section-light{
+    background:#f5f9fd;
+    color:#122033;
+}
+
+.section-header{
+    max-width:720px;
+    margin:0 auto 55px;
+    text-align:center;
+}
+
+.section-header .label{
+    color:#1592ff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.2px;
+}
+
+.section-header h2{
+    font-size:42px;
+    line-height:1.15;
+    margin:12px 0 15px;
+}
+
+.section-header p{
+    color:#8292a6;
+}
+
+/* FEATURES */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    padding:30px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#0b1a2b;
+    border-radius:16px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(36,158,255,.4);
+    box-shadow:0 20px 45px rgba(0,0,0,.22);
+}
+
+.icon{
+    width:48px;
+    height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    background:rgba(21,140,255,.12);
+    color:#55b8ff;
+    font-size:23px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-size:19px;
+    margin-bottom:9px;
+}
+
+.card p{
+    color:#8798ab;
+    font-size:14px;
+}
+
+/* SOLUTIONS */
+
+.solution-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.solution{
+    min-height:280px;
+    padding:32px;
+    border-radius:17px;
+    background:#fff;
+    border:1px solid #e1e9f2;
+}
+
+.solution-icon{
+    font-size:36px;
+    margin-bottom:20px;
+}
+
+.solution h3{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.solution p{
+    color:#66768a;
+    font-size:15px;
+}
+
+/* TECHNOLOGY */
+
+.tech-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.tech{
+    padding:22px;
+    text-align:center;
+    border-radius:12px;
+    background:#0c1b2d;
+    border:1px solid rgba(255,255,255,.08);
+    color:#dbeaff;
+    font-size:14px;
+    font-weight:700;
+}
+
+/* WORKFLOW */
+
+.workflow{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+}
+
+.step{
+    text-align:center;
+    padding:25px 12px;
+}
+
+.step-number{
+    width:44px;
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 15px;
+    border-radius:50%;
+    background:#168cff;
+    font-weight:800;
+}
+
+.step h3{
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.step p{
+    font-size:12px;
+    color:#8393a6;
+}
+
+/* ABOUT */
+
+.about{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+}
+
+.about p{
+    color:#8798ab;
+    margin-bottom:18px;
+    font-size:16px;
+}
+
+/* CTA */
+
+.cta{
+    padding:100px 0;
+    text-align:center;
+    background:
+        radial-gradient(circle at center,rgba(18,140,255,.22),transparent 45%),
+        #07111f;
+}
+
+.cta h2{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.cta p{
+    max-width:650px;
+    margin:0 auto 30px;
+    color:#8fa0b2;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid rgba(255,255,255,.08);
+    padding:30px 0;
+    background:#050d17;
+    color:#718297;
+    text-align:center;
+    font-size:13px;
+}
+
+footer a{
+    color:#48adff;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .cards,
+    .solution-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .tech-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .workflow{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .nav-links{
+        display:none;
+    }
+}
+
+@media(max-width:600px){
+
+    .hero{
+        min-height:auto;
+        padding:90px 0;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero-text{
+        font-size:16px;
+    }
+
+    .cards,
+    .solution-grid,
+    .tech-grid,
+    .workflow{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:75px 0;
+    }
+
+    .section-header h2{
+        font-size:32px;
+    }
+
+    .cta h2{
+        font-size:34px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
 <!-- NAVIGATION -->
 
-<nav>
-    <div class="nav-container">
+<header class="navbar">
 
-        <div class="logo">
-            360<span>Alert</span>
-        </div>
+<div class="container nav-inner">
 
-        <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#technology">Technology</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
+<a href="#" class="logo">
+360<span>Alert</span>
+</a>
 
-    </div>
+<nav class="nav-links">
+
+<a href="#features">Features</a>
+<a href="#solutions">Solutions</a>
+<a href="#technology">Technology</a>
+<a href="#about">About</a>
+
+<a
+href="https://360alert.io/"
+target="_blank"
+class="nav-btn">
+Official Website
+</a>
+
 </nav>
+
+</div>
+
+</header>
 
 
 <!-- HERO -->
 
 <section class="hero">
 
-    <div class="hero-container">
+<div class="container hero-grid">
 
-        <div>
+<div>
 
-            <span class="hero-label">
-                AI-POWERED SAFETY MONITORING
-            </span>
+<div class="badge">
+AI-POWERED SAFETY TECHNOLOGY
+</div>
 
-            <h1>
-                Smarter Safety.
-                <span>Faster Alerts.</span>
-            </h1>
+<h1>
+Smarter Safety.<br>
+<span>Faster Response.</span>
+</h1>
 
-            <p>
-                360Alert is an AI-driven safety monitoring and alert
-                management platform designed to help organizations
-                detect potential safety events and respond faster.
-            </p>
+<p class="hero-text">
 
-            <div class="buttons">
+360Alert is an AI-driven safety monitoring and alert
+management platform designed to help organizations
+detect potential safety events and respond with greater
+speed and awareness.
 
-                <a
-                    href="https://360alert.io/"
-                    target="_blank"
-                    class="btn btn-primary">
-                    Visit 360Alert.io
-                </a>
+</p>
 
-                <a
-                    href="#features"
-                    class="btn btn-secondary">
-                    Explore Features
-                </a>
+<div class="hero-buttons">
 
-            </div>
+<a
+href="https://360alert.io/"
+target="_blank"
+class="btn btn-primary">
+Explore 360Alert
+</a>
 
-        </div>
+<a
+href="#features"
+class="btn btn-outline">
+View Capabilities
+</a>
+
+</div>
+
+</div>
 
 
-        <div class="hero-card">
+<!-- DASHBOARD VISUAL -->
 
-            <div class="monitor">
+<div class="dashboard">
 
-                <div>
+<div class="dashboard-top">
 
-                    <div class="monitor-icon">
-                        🛡️
-                    </div>
+<span class="dashboard-title">
+360Alert Safety Dashboard
+</span>
 
-                    <h3>
-                        Intelligent Safety Monitoring
-                    </h3>
+<span class="status">
+● SYSTEM ACTIVE
+</span>
 
-                    <p>
-                        Detect • Alert • Respond
-                    </p>
+</div>
 
-                </div>
+<div class="dashboard-main">
 
-            </div>
+<div class="metric">
 
-        </div>
+<small>Monitored Areas</small>
 
-    </div>
+<strong>24</strong>
+
+</div>
+
+<div class="metric">
+
+<small>Active Devices</small>
+
+<strong>38</strong>
+
+</div>
+
+<div class="metric">
+
+<small>Events Today</small>
+
+<strong>17</strong>
+
+</div>
+
+<div class="metric">
+
+<small>Response Status</small>
+
+<strong>Fast</strong>
+
+</div>
+
+</div>
+
+<div class="alert-box">
+
+<div class="alert-line">
+<span class="alert-dot"></span>
+Potential safety event detected
+</div>
+
+<div class="alert-line">
+<span class="alert-dot"></span>
+Monitoring system active
+</div>
+
+<div class="alert-line">
+<span class="alert-dot"></span>
+Alert workflow available
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- FEATURES -->
 
-<section id="features">
+<section id="features" class="section section-dark">
 
-    <div class="section-container">
+<div class="container">
 
-        <div class="section-title">
+<div class="section-header">
 
-            <h2>
-                Key Features
-            </h2>
+<div class="label">
+CORE CAPABILITIES
+</div>
 
-            <p>
-                Technology designed to provide better visibility
-                into safety events and support faster response.
-            </p>
+<h2>
+Intelligent Safety Monitoring
+</h2>
 
-        </div>
+<p>
+Technology designed to improve visibility, awareness and
+response across safety-focused environments.
+</p>
 
-
-        <div class="features">
-
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>AI Event Detection</h3>
-                <p>
-                    AI-powered monitoring can identify predefined
-                    safety events and unusual activity.
-                </p>
-            </div>
+</div>
 
 
-            <div class="feature-card">
-                <div class="feature-icon">🚨</div>
-                <h3>Real-Time Alerts</h3>
-                <p>
-                    Important events can generate alerts so the
-                    appropriate teams can respond quickly.
-                </p>
-            </div>
+<div class="cards">
+
+<div class="card">
+<div class="icon">AI</div>
+<h3>AI Event Detection</h3>
+<p>
+AI-driven monitoring can identify predefined safety
+events and unusual activity.
+</p>
+</div>
 
 
-            <div class="feature-card">
-                <div class="feature-icon">🧍</div>
-                <h3>Fall Detection</h3>
-                <p>
-                    Support safety monitoring by detecting potential
-                    falls and related events.
-                </p>
-            </div>
+<div class="card">
+<div class="icon">⚡</div>
+<h3>Real-Time Alerts</h3>
+<p>
+Relevant events can generate alerts to support timely
+staff awareness and response.
+</p>
+</div>
 
 
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Centralized Dashboard</h3>
-                <p>
-                    Monitor devices, rooms, events and alerts
-                    through a centralized interface.
-                </p>
-            </div>
+<div class="card">
+<div class="icon">◉</div>
+<h3>Fall Detection</h3>
+<p>
+Support monitoring for potential falls and related
+safety situations.
+</p>
+</div>
 
 
-            <div class="feature-card">
-                <div class="feature-icon">🔔</div>
-                <h3>Alert Management</h3>
-                <p>
-                    Organize safety events through a structured
-                    alert and response workflow.
-                </p>
-            </div>
+<div class="card">
+<div class="icon">▣</div>
+<h3>Centralized Dashboard</h3>
+<p>
+Monitor devices, rooms, events and alerts through a
+centralized interface.
+</p>
+</div>
 
 
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>Reporting & Analytics</h3>
-                <p>
-                    Review historical events and identify patterns
-                    that can support safety operations.
-                </p>
-            </div>
+<div class="card">
+<div class="icon">!</div>
+<h3>Alert Management</h3>
+<p>
+Organize events through a structured workflow from
+detection to resolution.
+</p>
+</div>
 
-        </div>
 
-    </div>
+<div class="card">
+<div class="icon">↗</div>
+<h3>Analytics</h3>
+<p>
+Review historical events and patterns to support
+safety operations.
+</p>
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- SOLUTIONS -->
 
-<section id="solutions" class="solutions">
+<section id="solutions" class="section section-light">
 
-    <div class="section-container">
+<div class="container">
 
-        <div class="section-title">
+<div class="section-header">
 
-            <h2>
-                Safety Solutions
-            </h2>
+<div class="label">
+APPLICATIONS
+</div>
 
-            <p>
-                360Alert technology can support monitoring across
-                different safety-focused environments.
-            </p>
+<h2>
+Built for Safety-Focused Environments
+</h2>
 
-        </div>
+<p>
+360Alert technology can support monitoring across
+different environments where safety awareness matters.
+</p>
 
-
-        <div class="solution-grid">
-
-            <div class="solution-card">
-
-                <div class="feature-icon">🏥</div>
-
-                <h3>
-                    Healthcare
-                </h3>
-
-                <p>
-                    Support monitoring in hospitals, clinics,
-                    patient rooms and healthcare facilities.
-                </p>
-
-            </div>
+</div>
 
 
-            <div class="solution-card">
+<div class="solution-grid">
 
-                <div class="feature-icon">👴</div>
+<div class="solution">
 
-                <h3>
-                    Elderly Care
-                </h3>
+<div class="solution-icon">🏥</div>
 
-                <p>
-                    Help care teams monitor potential falls,
-                    movement events and other safety conditions.
-                </p>
+<h3>Healthcare</h3>
 
-            </div>
+<p>
+Support safety monitoring across hospitals, clinics,
+patient rooms and healthcare facilities.
+</p>
+
+</div>
 
 
-            <div class="solution-card">
+<div class="solution">
 
-                <div class="feature-icon">🏫</div>
+<div class="solution-icon">👴</div>
 
-                <h3>
-                    School Safety
-                </h3>
+<h3>Elderly Care</h3>
 
-                <p>
-                    Support safety monitoring across classrooms,
-                    hallways and other monitored areas.
-                </p>
+<p>
+Help care teams monitor potential falls, movement
+events and other predefined safety conditions.
+</p>
 
-            </div>
+</div>
 
-        </div>
 
-    </div>
+<div class="solution">
+
+<div class="solution-icon">🏫</div>
+
+<h3>School Safety</h3>
+
+<p>
+Support monitoring across classrooms, hallways,
+campuses and other designated areas.
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- TECHNOLOGY -->
 
-<section id="technology" class="technology">
+<section id="technology" class="section section-dark">
 
-    <div class="section-container">
+<div class="container">
 
-        <div class="section-title">
+<div class="section-header">
 
-            <h2>
-                Technology
-            </h2>
+<div class="label">
+TECHNOLOGY
+</div>
 
-            <p>
-                A combination of intelligent software and
-                connected monitoring technologies.
-            </p>
+<h2>
+AI + Connected Safety Technology
+</h2>
 
-        </div>
+<p>
+360Alert combines intelligent software with connected
+monitoring technologies.
+</p>
+
+</div>
 
 
-        <div class="tech-list">
+<div class="tech-grid">
 
-            <div class="tech-item">
-                Artificial Intelligence
-            </div>
+<div class="tech">Artificial Intelligence</div>
+<div class="tech">Computer Vision</div>
+<div class="tech">Real-Time Processing</div>
+<div class="tech">IoT Monitoring</div>
+<div class="tech">Smart Alerts</div>
+<div class="tech">Data Analytics</div>
+<div class="tech">Cloud Infrastructure</div>
+<div class="tech">Secure APIs</div>
 
-            <div class="tech-item">
-                Computer Vision
-            </div>
+</div>
 
-            <div class="tech-item">
-                Real-Time Processing
-            </div>
+</div>
 
-            <div class="tech-item">
-                IoT Monitoring
-            </div>
+</section>
 
-            <div class="tech-item">
-                Smart Alerts
-            </div>
 
-            <div class="tech-item">
-                Data Analytics
-            </div>
+<!-- WORKFLOW -->
 
-            <div class="tech-item">
-                Cloud Infrastructure
-            </div>
+<section class="section section-light">
 
-            <div class="tech-item">
-                Secure APIs
-            </div>
+<div class="container">
 
-        </div>
+<div class="section-header">
 
-    </div>
+<div class="label">
+HOW IT WORKS
+</div>
+
+<h2>
+From Detection to Response
+</h2>
+
+<p>
+A structured workflow can help teams understand and
+manage safety events.
+</p>
+
+</div>
+
+
+<div class="workflow">
+
+<div class="step">
+
+<div class="step-number">1</div>
+
+<h3>Detect</h3>
+
+<p>
+Monitor activity and identify predefined events.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<h3>Analyze</h3>
+
+<p>
+AI-based systems analyze relevant activity.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<h3>Alert</h3>
+
+<p>
+Generate an alert when a relevant event occurs.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">4</div>
+
+<h3>Respond</h3>
+
+<p>
+Notify the appropriate team or staff member.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">5</div>
+
+<h3>Resolve</h3>
+
+<p>
+Track the event and complete the response workflow.
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- ABOUT -->
 
-<section id="about">
+<section id="about" class="section section-dark">
 
-    <div class="section-container">
+<div class="container">
 
-        <div class="section-title">
+<div class="section-header">
 
-            <h2>
-                About 360Alert
-            </h2>
+<div class="label">
+ABOUT THE PROJECT
+</div>
 
-        </div>
+<h2>
+What is 360Alert?
+</h2>
+
+</div>
 
 
-        <div class="about-box">
+<div class="about">
 
-            <p>
-                360Alert is focused on using modern technology
-                to make safety monitoring more intelligent,
-                responsive and easier to manage.
-            </p>
+<p>
+360Alert focuses on using modern technology to make
+safety monitoring more intelligent, responsive and
+easier to manage.
+</p>
 
-            <p>
-                The platform combines AI-driven event detection,
-                real-time monitoring and centralized alert
-                management to help organizations gain better
-                visibility into safety-related events.
-            </p>
+<p>
+The platform combines AI-driven event detection,
+real-time monitoring and centralized alert management
+to provide better visibility into safety-related events.
+</p>
 
-            <p>
-                Its applications can extend across healthcare,
-                elderly care, education and other environments
-                where proactive safety monitoring is valuable.
-            </p>
+<p>
+Its applications can extend across healthcare,
+elderly care, education and other environments where
+proactive safety monitoring is valuable.
+</p>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </section>
 
@@ -766,25 +1052,25 @@
 
 <section class="cta">
 
-    <div class="section-container">
+<div class="container">
 
-        <h2>
-            Explore 360Alert
-        </h2>
+<h2>
+Explore 360Alert
+</h2>
 
-        <p>
-            Learn more about AI-powered safety monitoring,
-            intelligent alerts and the technology behind 360Alert.
-        </p>
+<p>
+Discover the official 360Alert platform and learn more
+about AI-powered safety monitoring and intelligent alerts.
+</p>
 
-        <a
-            href="https://360alert.io/"
-            target="_blank"
-            class="btn">
-            Visit Official Website
-        </a>
+<a
+href="https://360alert.io/"
+target="_blank"
+class="btn btn-primary">
+Visit 360Alert.io
+</a>
 
-    </div>
+</div>
 
 </section>
 
@@ -793,17 +1079,22 @@
 
 <footer>
 
-    <p>
-        © 2026 360Alert. All rights reserved.
-    </p>
+<div class="container">
 
-    <p>
-        <a href="https://360alert.io/" target="_blank">
-            360Alert.io
-        </a>
-    </p>
+<p>
+© 2026 360Alert. AI-Powered Safety Monitoring.
+</p>
+
+<p>
+<a href="https://360alert.io/" target="_blank">
+360Alert.io
+</a>
+</p>
+
+</div>
 
 </footer>
+
 
 </body>
 </html>
